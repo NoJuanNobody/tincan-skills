@@ -38,18 +38,27 @@ tincan credits
 tincan cost --json
 ```
 
-## 3. Human-In-The-Loop (HITL) Accessibility Gate (`actions`, `trigger`, `dismiss`)
+## 3. Mentor–Mentee Guidance & Human-In-The-Loop (HITL) Accessibility Gate (`mentor`, `actions`, `trigger`, `dismiss`)
 
-When a remote peer or autonomous agent dispatches an executable action (`run_script`, `git_sync`, `deploy`, `open_url`), TinCan holds it inside the local **Accessibility Gate** until explicitly approved by the human operator:
+TinCan is designed around a **Mentor–Mentee trust model**. When a Mentor (or peer) dispatches a walkthrough link, app launch, or spoken voice coaching note (`tincan mentor guide` or `tincan send --speak`), TinCan holds it inside the Mentee's local **Accessibility Gate** (`pending_approval`) until explicitly approved by the Mentee:
 
 ```bash
-# 1. Inspect all pending actions in the Accessibility Gate
-tincan actions --json
+# 1. Inspect Mentor/Mentee pairings and pending guidance steps
+tincan mentor status
 
-# 2. Approve and execute queued action #1
-tincan trigger 1 --json
+# 2. (Mentor -> Mentee) Dispatch a guided walkthrough step or documentation URL
+tincan mentor guide alex "Open https://gemini.google.com and review the WebRTC SDP offer flow" --speak
 
-# 3. Dismiss/reject queued action #2 without executing
+# 3. (Mentee -> Mentor) Raise hand for a live Mentor pair-programming & screen-review room
+tincan mentor hand "Need help debugging X25519 signature verification"
+
+# 4. Inspect all pending Mentor & Peer actions in the Accessibility Gate
+tincan actions
+
+# 5. Approve and execute queued Mentor guidance or TTS playback #1
+tincan trigger 1
+
+# 6. Dismiss/reject queued action #2 without executing
 tincan dismiss 2
 ```
 

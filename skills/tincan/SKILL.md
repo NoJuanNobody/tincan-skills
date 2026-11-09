@@ -38,8 +38,23 @@ tincan whoami [--json]
 # List pinned Trust-On-First-Use (TOFU) contacts
 tincan contacts [--json]
 
-# Pin a contact's public key by human-readable alias
-tincan add-contact <alias> <tc:address> [--json]
+# Pin a contact's public key by human-readable alias (with optional Mentor/Mentee role)
+tincan add-contact <alias> <tc:address> [--role mentor|mentee|peer] [--allow-voice] [--json]
+```
+
+### 1b. Mentor–Mentee Coaching & Guided Walkthroughs (`mentor`)
+```bash
+# View pinned Mentors, Mentees, voice-gate settings, and pending Mentor guidance steps
+tincan mentor status [--json]
+
+# Assign Mentor or Mentee role and toggle approval-gated vs. live voice coaching
+tincan mentor set <alias> --role mentor|mentee|peer [--allow-voice | --gate-voice] [--json]
+
+# (Mentor -> Mentee) Send an approval-gated [MENTOR GUIDANCE] step or URL to a Mentee
+tincan mentor guide <mentee_alias> "<instruction_or_url>" [--speak] [--json]
+
+# (Mentee -> Mentor) Raise hand to request a live code review & pair-programming WebRTC room
+tincan mentor hand "<topic_or_blocker>" [--mentor <mentor_alias>] [--json]
 ```
 
 ### 2. Sealed Blind-Relay Messaging & Kokoro TTS (`send`, `read`, `say`)

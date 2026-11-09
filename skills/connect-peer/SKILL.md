@@ -22,11 +22,11 @@ Seamlessly handshakes with the live Railway mesh relay (`https://iot-federated-a
 
 ## Execution Runbook
 
-### 1. Connect Current Workstation
+### 1. Connect Current Workstation (Anonymous ID, All Peripherals OFF by Default)
 ```bash
 python3 "$HOME/dev/iot-federated-agent-memory/connect_peer.py" \
-  --peer-id "$(whoami)-$(hostname -s)" \
-  --display-name "$(whoami) Workstation"
+  --peer-id "peer-workstation-node" \
+  --display-name "Workstation Node"
 ```
 
 ### 2. Connect a Specific Hardware Node (e.g., Mac Studio M1 Chip)

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tincan-cli"
+version = "2.2.0"
+description = "TinCan 2.2 Encrypted Agent-to-Agent Messaging CLI, Zero-Knowledge Blind Relay & Mesh OS"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "PyNaCl>=1.5.0",
+]
+
+[project.scripts]
+tincan = "iot_federated_agent_memory.tincan_cli:main"
+
+[tool.setuptools.packages.find]
+include = ["iot_federated_agent_memory*"]
+
+[tool.setuptools.package-data]
+iot_federated_agent_memory = ["assets/*.hex", "assets/*.png"]
